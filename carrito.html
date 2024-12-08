@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Albin</title>
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1c1c1c;
+            color: white;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            background-color: #ff4500;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            width: auto;
+        }
+
+        button:hover {
+            background-color: #e03922;
+        }
+
+        /* Header */
+        header {
+            background-color: #222;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        header .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        header .logo h1 {
+            margin: 0;
+            font-size: 26px;
+            color: #FFEB3B;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex: 1;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #ff4500;
+        }
+
+        /* Carrito */
+        #carrito {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #333;
+            color: white;
+        }
+
+        #carrito h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        #carrito table {
+            width: 100%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            table-layout: auto;
+            overflow-x: auto; /* Permite el desplazamiento horizontal en pantallas pequeñas */
+        }
+
+        #carrito table, th, td {
+            border: 1px solid #444;
+        }
+
+        #carrito th, td {
+            padding: 15px;
+            text-align: center;
+        }
+
+        #carrito th {
+            background-color: #222;
+            color: white;
+        }
+
+        #carrito td {
+            background-color: #444;
+        }
+
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+        }
+
+        .eliminar-btn {
+            background-color: #ff0000;
+            color: white;
+            padding: 5px 10px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .eliminar-btn:hover {
+            background-color: #cc0000;
+        }
+
+        /* Media Queries para hacerlo responsivo */
+        @media (max-width: 1024px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            header .logo img {
+                height: 30px;
+            }
+
+            header .logo h1 {
+                font-size: 22px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            #carrito table {
+                width: 90%; /* El carrito ocupa el 90% del ancho en pantallas más pequeñas */
+            }
+
+            #carrito h2 {
+                font-size: 28px;
+            }
+
+            .total {
+                font-size: 16px;
+            }
+
+            button {
+                width: 100%;
+                padding: 12px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .logo h1 {
+                font-size: 18px;
+            }
+
+            #carrito h2 {
+                font-size: 24px;
+            }
+
+            #carrito table, th, td {
+                padding: 10px;
+            }
+
+            .total {
+                font-size: 14px;
+            }
+
+            footer {
+                font-size: 14px;
+            }
+
+            .eliminar-btn {
+                font-size: 12px;
+                padding: 5px 8px;
+            }
+
+            /* Hacer que las celdas de la tabla sean más responsivas en pantallas muy pequeñas */
+            #carrito table {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+            }
+
+            #carrito th, #carrito td {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            /* En pantallas muy pequeñas, convertimos las filas de la tabla en una lista */
+            #carrito table, #carrito td {
+                display: block;
+                width: 100%;
+                text-align: left;
+            }
+
+            #carrito td {
+                border: none;
+                padding-left: 10px;
+                padding-right: 10px;
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            #carrito td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                margin-right: 5px;
+            }
+
+            .eliminar-btn {
+                font-size: 12px;
+                padding: 5px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <img src="Imagenes/Logo.png" alt="Logo Albin"> 
+            <h1>Albin</h1>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="sobre_nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="carrito">
+        <h2>Tu Carrito de Compras</h2>
+
+        <table id="tabla-carrito">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Los productos se cargarán aquí dinámicamente -->
+            </tbody>
+        </table>
+
+        <div class="total" id="total">
+            <!-- El total se calculará y mostrará aquí -->
+        </div>
+
+        <button onclick="location.href='catalogo.html'">Seguir Comprando</button>
+        <button id="finalizar-compra" onclick="finalizarCompra()">Finalizar Compra</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Albin | Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para cargar los productos del carrito desde el localStorage
+        function cargarCarrito() {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            let tablaCarrito = document.getElementById('tabla-carrito').getElementsByTagName('tbody')[0];
+            let total = 0;
+
+            // Limpiar la tabla antes de agregar los productos
+            tablaCarrito.innerHTML = '';
+
+            // Agregar cada producto al carrito
+            carrito.forEach((producto, index) => {
+                let fila = tablaCarrito.insertRow();
+                fila.innerHTML = `
+                    <td>${producto.nombre}</td>
+                    <td>${producto.cantidad}</td>
+                    <td>$${producto.precio}</td>
+                    <td>$${(producto.precio * producto.cantidad).toFixed(2)}</td>
+                    <td><button class="eliminar-btn" onclick="eliminarDelCarrito(${index})">Eliminar</button></td>
+                `;
+                total += producto.precio * producto.cantidad;
+            });
+
+            // Mostrar el total
+            document.getElementById('total').innerHTML = `<p>Total: $${total.toFixed(2)}</p>`;
+        }
+
+        // Función para eliminar un producto del carrito
+        function eliminarDelCarrito(index) {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            carrito.splice(index, 1); // Eliminar el producto en el índice dado
+            localStorage.setItem('carrito', JSON.stringify(carrito)); // Guardar el carrito actualizado
+            cargarCarrito(); // Recargar la página para actualizar el carrito
+        }
+
+        // Función para finalizar la compra y enviar un mensaje de WhatsApp
+        function finalizarCompra() {
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            let mensaje = "¡Hola! Quiero hacer un pedido de los siguientes productos:\n\n";
+
+            // Recorrer los productos del carrito y agregar al mensaje
+            carrito.forEach(producto => {
+                mensaje += `Producto: ${producto.nombre}\nCantidad: ${producto.cantidad}\nPrecio: $${producto.precio}\nTotal: $${(producto.precio * producto.cantidad).toFixed(2)}\n\n`;
+            });
+
+            // Agregar el total final al mensaje
+            let total = carrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
+            mensaje += `Total: $${total.toFixed(2)}\n\n`;
+
+            // Codificar el mensaje para usarlo en una URL
+            mensaje = encodeURIComponent(mensaje);
+
+            // Redirigir al usuario a WhatsApp con el mensaje
+            let numeroWhatsApp = '5620828219';
+            let url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+            window.open(url, '_blank');
+        }
+
+        // Llamar a la función cargarCarrito al cargar la página
+        window.onload = cargarCarrito;
+    </script>
+
+</body>
+</html>

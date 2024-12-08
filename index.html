@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Agregada para hacer la página responsiva -->
+    <title>Albin</title>
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1c1c1c; /* Fondo oscuro que refleja el estilo Old School */
+            color: white; /* Color de texto blanco */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Courier New', Courier, monospace;
+            color: white; /* Texto en blanco */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            background-color: #ff4500; /* Naranja intenso */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #e03922; /* Rojo más oscuro al pasar el mouse */
+        }
+
+        /* Header */
+        header {
+            background-color: #222; /* Fondo oscuro para el header */
+            color: white; /* Letras blancas */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        header .logo img {
+            height: 40px; /* Aumentamos el tamaño del logo */
+            margin-right: 10px;
+        }
+
+        header .logo h1 {
+            margin: 0;
+            font-size: 26px; /* Mayor tamaño de fuente para destacar */
+            color: #FFEB3B; /* Amarillo brillante solo para el nombre "Albin" */
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex: 1;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white; /* Color blanco para los enlaces */
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #ff4500; /* Naranja al pasar el mouse */
+        }
+
+        /* Hero Section */
+        #hero {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #ff4500; /* Naranja intenso */
+            color: white;
+        }
+
+        #hero h1 {
+            font-size: 48px;
+        }
+
+        #hero button {
+            background-color: #222;
+            font-size: 18px;
+        }
+
+        /* Imagen del héroe (reducción de tamaño al 50%) */
+        #hero img {
+            margin: 20px 0;
+            width: 50%; /* Ajuste para hacer la imagen 50% más pequeña */
+            max-width: 200px; /* Limita el tamaño máximo de la imagen */
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Tira de imágenes con playeras (con reducción del 20%) */
+        .playeras-tira {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            overflow-x: auto; /* Permite el deslizamiento horizontal */
+            padding: 20px 0;
+        }
+
+        .playeras-tira img {
+            width: 20%; /* Reduce el tamaño de las imágenes al 80% de su tamaño original */
+            margin: 0 10px; /* Agrega espacio entre las imágenes */
+            height: auto;
+        }
+
+        /* Carrusel */
+        .carrusel-container {
+            position: relative;
+            width: 80%;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px; /* Limita el ancho máximo del carrusel */
+        }
+
+        .carrusel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carrusel-images img {
+            width: 100%; /* Ajusta las imágenes al tamaño del contenedor */
+            max-width: none; /* Evita que se limiten al tamaño máximo */
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .carrusel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .prev, .next {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            font-size: 24px;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Texto debajo del carrusel */
+        .diseños-texto {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white; /* Letras en blanco */
+        }
+
+        /* Media Queries para hacer la página responsiva */
+        @media (max-width: 1024px) {
+            header {
+                text-align: center;
+                flex-direction: column; /* Los elementos del header se apilan verticalmente */
+            }
+
+            nav ul {
+                display: flex;
+                flex-direction: column;
+                padding: 0;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            #hero h1 {
+                font-size: 36px;
+            }
+
+            #hero img {
+                width: 70%;
+                max-width: 150px;
+            }
+
+            .playeras-tira img {
+                width: 30%; /* Ajustar las imágenes de playeras para pantallas más pequeñas */
+            }
+
+            .carrusel-container {
+                width: 90%;
+                max-width: none;
+            }
+
+            .diseños-texto {
+                font-size: 20px;
+            }
+
+            button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .logo h1 {
+                font-size: 18px; /* Aún más pequeño en pantallas de móvil */
+            }
+
+            nav ul li a {
+                font-size: 14px; /* Reducir tamaño de letra para móviles */
+            }
+
+            .playeras-tira img {
+                width: 40%; /* Reducir las imágenes de playeras */
+            }
+
+            .diseños-texto {
+                font-size: 18px;
+            }
+
+            button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="imagenes/Logo.png" alt="Logo Albin"> 
+            <h1>Albin</h1>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="sobre_nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h1>Bienvenido a Albin Shop</h1>
+        <section class="playeras-tira">
+            <img src="Imagenes/Playeras.png" alt="Playera 1">
+            <img src="Imagenes/Playeras.png" alt="Playera 2">
+            <img src="Imagenes/Playeras.png" alt="Playera 3">
+            <img src="Imagenes/Playeras.png" alt="Playera 4">
+            <img src="Imagenes/Playeras.png" alt="Playera 5">
+            <img src="Imagenes/Playeras.png" alt="Playera 6">
+        </section>
+        <p>¡Explora nuestra colección de playeras con diseño vintage y único!</p>
+        <button onclick="location.href='catalogo.html'">Ver Colección</button>
+    </section>
+
+    <section class="carrusel-container">
+        <div class="carrusel-images" id="carruselImages">
+            <img src="Imagenes/Diseno.png" alt="Diseño">
+            <img src="Imagenes/Diseno1.png" alt="Diseño 1">
+            <img src="Imagenes/Diseno2.png" alt="Diseño 2">
+            <img src="Imagenes/Diseno3.png" alt="Diseño 3">
+            <img src="Imagenes/Diseno4.png" alt="Diseño 4">
+            <img src="Imagenes/Diseno5.png" alt="Diseño 5">
+            <img src="Imagenes/Diseno6.png" alt="Diseño 6">
+            <img src="Imagenes/Diseno7.png" alt="Diseño 7">
+            <img src="Imagenes/Diseno8.png" alt="Diseño 8">
+        </div>
+        <div class="carrusel-buttons">
+            <button class="prev" onclick="moveCarrusel(-1)">&#10094;</button>
+            <button class="next" onclick="moveCarrusel(1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section class="diseños-texto">
+        <h2>Diseños exclusivos, al estilo retro</h2>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Albin. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        let index = 0;
+
+        function moveCarrusel(step) {
+            const images = document.getElementById("carruselImages");
+            const totalImages = images.children.length;
+            index = (index + step + totalImages) % totalImages;
+            images.style.transform = `translateX(-${index * 100}%)`;
+        }
+    </script>
+</body>
+</html>

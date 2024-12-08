@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Albin</title>
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1c1c1c; /* Fondo oscuro que refleja el estilo Old School */
+            color: white; /* Color de texto blanco */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra todo el contenido */
+            justify-content: flex-start;
+            height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Courier New', Courier, monospace;
+            color: white; /* Texto en blanco */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            background-color: #ff4500; /* Naranja intenso */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #e03922; /* Rojo más oscuro al pasar el mouse */
+        }
+
+        /* Header */
+        header {
+            background-color: #222; /* Fondo oscuro para el header */
+            color: white; /* Letras blancas */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 40px; /* Aumentamos el tamaño del logo */
+            margin-right: 10px;
+        }
+
+        header .logo h1 {
+            margin: 0;
+            font-size: 26px; /* Mayor tamaño de fuente para destacar */
+            color: #FFEB3B; /* Amarillo brillante solo para el nombre "Albin" */
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white; /* Color blanco para los enlaces */
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #ff4500; /* Naranja al pasar el mouse */
+        }
+
+        /* Contacto */
+        #contacto {
+            padding: 40px 20px;
+            background-color: #333; /* Fondo más oscuro para la sección de contacto */
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+
+        #contacto form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        #contacto label {
+            display: block;
+            margin: 10px 0;
+            color: white; /* Etiquetas en blanco */
+        }
+
+        #contacto input, #contacto textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #444; /* Borde oscuro para los campos */
+            border-radius: 5px;
+            background-color: #222; /* Fondo oscuro para los campos */
+            color: white; /* Texto en blanco dentro de los campos */
+        }
+
+        #contacto button {
+            width: 100%;
+            padding: 15px;
+            background-color: #ff4500; /* Naranja brillante */
+            color: white;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white; /* Letras en blanco */
+            width: 100%;
+        }
+
+        /* Estilo para el QR */
+        #qr-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        #qr-container img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 10px; /* Espacio entre el QR y la leyenda */
+        }
+
+        /* Estilo para la leyenda debajo del QR */
+        #qr-container p {
+            color: #FFEB3B; /* Amarillo brillante */
+            font-size: 18px;
+            margin-top: 0;
+            font-family: 'Courier New', Courier, monospace; /* Estilo de fuente similar al de los encabezados */
+        }
+
+        /* Media Queries para hacerlo responsivo */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column; /* Los elementos del header se apilan verticalmente */
+                text-align: center;
+            }
+
+            header .logo img {
+                height: 30px; /* Reducimos el tamaño del logo en pantallas pequeñas */
+            }
+
+            header .logo h1 {
+                font-size: 22px; /* Reducimos el tamaño de la fuente en pantallas pequeñas */
+            }
+
+            nav ul {
+                flex-direction: column;
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            #contacto form {
+                max-width: 100%; /* El formulario ocupa todo el ancho en pantallas pequeñas */
+                padding: 10px;
+            }
+
+            #contacto label {
+                font-size: 14px; /* Reducimos el tamaño de las etiquetas */
+            }
+
+            #contacto input, #contacto textarea {
+                font-size: 14px; /* Reducimos el tamaño de la fuente dentro de los campos */
+            }
+
+            #contacto button {
+                font-size: 16px; /* Reducimos el tamaño del botón */
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .logo h1 {
+                font-size: 18px; /* Aún más pequeño en pantallas de móvil */
+            }
+
+            #contacto form {
+                padding: 5px; /* Menos padding en el formulario */
+            }
+
+            #contacto label {
+                font-size: 12px; /* Aún más pequeño en pantallas pequeñas */
+            }
+
+            #contacto input, #contacto textarea {
+                font-size: 12px; /* Reducimos más el tamaño de la fuente */
+            }
+
+            #contacto button {
+                font-size: 14px; /* Reducimos aún más el tamaño del botón */
+                padding: 10px;
+            }
+
+            footer {
+                font-size: 14px; /* Reducimos el tamaño del texto del pie de página */
+            }
+        }
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        // Generar el código QR cuando la página se carga
+        $(document).ready(function(){
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: "https://www.facebook.com/profile.php?id=61570148762692&mibextid=ZbWKwL", // URL actualizada
+                width: 128,
+                height: 128,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <!-- Envolvemos el logo y el título en un enlace -->
+        <a href="index.html" class="logo">
+            <!-- Imagen del logo -->
+            <img src="Imagenes/Logo.png" alt="Logo Albin"> 
+            <h1>Albin</h1>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="sobre_nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <form action="#">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
+
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <!-- Aquí se coloca el QR que redirige a la página de Facebook -->
+    <section id="qr-container">
+        <a href="https://www.facebook.com/profile.php?id=61570148762692&mibextid=ZbWKwL" target="_blank">
+            <div id="qrcode"></div>
+        </a>
+        <p>Síguenos en Facebook</p> <!-- Leyenda debajo del QR -->
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Albin | Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

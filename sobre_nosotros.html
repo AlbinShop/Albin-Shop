@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros - Albin</title>
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1c1c1c; /* Fondo oscuro */
+            color: white; /* Texto blanco */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Courier New', Courier, monospace;
+            color: white; /* Color blanco */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            background-color: #ff4500; /* Naranja brillante */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #e03922; /* Rojo oscuro al pasar el mouse */
+        }
+
+        /* Header */
+        header {
+            background-color: #222; /* Fondo oscuro */
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 40px; /* Tamaño más grande del logo */
+            margin-right: 10px;
+        }
+
+        header .logo h1 {
+            margin: 0;
+            font-size: 26px; /* Tamaño de fuente más grande */
+            color: #FFEB3B; /* Amarillo para el nombre "Albin" */
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white; /* Color blanco para los enlaces */
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #ff4500; /* Naranja al pasar el mouse */
+        }
+
+        /* Sección Sobre Nosotros */
+        #about-us {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #e63946; /* Fondo rojo */
+            color: white;
+        }
+
+        #about-us h1 {
+            font-size: 48px;
+        }
+
+        #about-us p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-top: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Misión y Visión */
+        .mission-vision {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .mission-vision div {
+            background-color: #333;
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 45%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .mission-vision div h2 {
+            color: #ff4500; /* Naranja */
+            font-size: 30px;
+        }
+
+        .mission-vision div p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* Estilos para resaltar el recuadro */
+        .highlighted {
+            border: 3px solid #ff4500; /* Naranja */
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+        }
+
+        /* Media Queries para hacerlo responsivo */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column; /* Los elementos del header se apilan verticalmente */
+                text-align: center;
+            }
+
+            header .logo img {
+                height: 30px; /* Reducimos el tamaño del logo en pantallas pequeñas */
+            }
+
+            header .logo h1 {
+                font-size: 22px; /* Reducimos el tamaño de la fuente en pantallas pequeñas */
+            }
+
+            nav ul {
+                flex-direction: column;
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            #about-us h1 {
+                font-size: 36px; /* Reducimos el tamaño del título en pantallas pequeñas */
+            }
+
+            #about-us p {
+                font-size: 16px; /* Reducimos el tamaño del texto en pantallas pequeñas */
+                max-width: 100%;
+            }
+
+            .mission-vision {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .mission-vision div {
+                width: 80%; /* Las tarjetas de misión y visión se agrandan un poco en pantallas pequeñas */
+                margin-bottom: 20px;
+            }
+
+            .mission-vision div h2 {
+                font-size: 24px; /* Reducimos el tamaño de los subtítulos en pantallas pequeñas */
+            }
+
+            footer {
+                font-size: 14px; /* Reducimos el tamaño del texto del pie de página en pantallas pequeñas */
+            }
+        }
+
+        @media (max-width: 480px) {
+            #about-us h1 {
+                font-size: 28px; /* Aún más pequeño en pantallas de móvil */
+            }
+
+            #about-us p {
+                font-size: 14px; /* Reducimos aún más el tamaño del texto en pantallas pequeñas */
+            }
+
+            .mission-vision div {
+                width: 90%; /* Las tarjetas ocupan casi todo el ancho en pantallas muy pequeñas */
+            }
+
+            .mission-vision div h2 {
+                font-size: 20px; /* Reducimos el tamaño de los subtítulos aún más */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Envolvemos el logo y el título en un enlace -->
+        <a href="index.html" class="logo">
+            <!-- Imagen del logo -->
+            <img src="Imagenes/Logo.png" alt="Logo Albin"> 
+            <h1>Albin</h1>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="sobre_nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección Sobre Nosotros -->
+    <section id="about-us">
+        <h1>Sobre Nosotros</h1>
+        <p>En Albin nos especializamos en ofrecer playeras de alta calidad con diseños únicos, inspirados en el arte del tatuaje old school y el estilo vintage. Nuestra misión es brindar a nuestros clientes productos auténticos y cómodos que reflejan su personalidad y pasión por el arte y la moda.</p>
+    </section>
+
+    <!-- Misión y Visión -->
+    <section class="mission-vision">
+        <div onclick="resaltar(this)">
+            <h2>Misión</h2>
+            <p>Nuestra misión es ofrecer productos de moda de alta calidad que combinen arte y estilo, brindando a nuestros clientes una experiencia única en cada compra. Queremos ser una marca líder en el mercado de ropa casual, destacando por nuestro compromiso con la autenticidad, la comodidad y la sostenibilidad en nuestros diseños y materiales.</p>
+        </div>
+        <div onclick="resaltar(this)">
+            <h2>Visión</h2>
+            <p>Nos visualizamos como una marca reconocida a nivel nacional e internacional, que inspira a las personas a expresar su individualidad a través de nuestras playeras con diseños originales y audaces. Queremos seguir creciendo y evolucionando, siempre a la vanguardia de las tendencias, pero fieles a nuestras raíces artísticas y nuestra pasión por el estilo old school.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Albin | Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Función para resaltar el recuadro de la misión o visión seleccionada
+        function resaltar(elemento) {
+            // Primero, eliminamos el resaltado de todos los elementos
+            const secciones = document.querySelectorAll('.mission-vision div');
+            secciones.forEach(function(seccion) {
+                seccion.classList.remove('highlighted');
+            });
+            // Luego, agregamos el resaltado al elemento seleccionado
+            elemento.classList.add('highlighted');
+        }
+    </script>
+</body>
+</html>

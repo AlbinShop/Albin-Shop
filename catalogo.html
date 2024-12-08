@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - Albin</title>
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1c1c1c; /* Fondo oscuro */
+            color: white; /* Color de texto blanco */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Courier New', Courier, monospace;
+            color: white; /* Texto blanco */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            background-color: #e63946;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #d62828;
+        }
+
+        /* Estilos del carrusel */
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 300px;  /* Ajusta el tamaño máximo del carrusel */
+            margin: auto;
+            overflow: hidden;  /* Ocultar cualquier imagen que sobresalga del contenedor */
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 1.5s ease;
+            gap: 35px;  /* Añade espacio entre las imágenes */
+        }
+
+        .carousel-image {
+            width: 100%;  /* Las imágenes ocuparán el 100% del contenedor */
+            height: auto;  /* Mantener la proporción original de la imagen */
+            object-fit: cover;  /* Ajusta la imagen para cubrir el área sin distorsionarse */
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .carousel-button-prev {
+            left: 0;
+        }
+
+        .carousel-button-next {
+            right: 0;
+        }
+
+        /* Estilos Generales de la Página */
+        header {
+            background-color: #222;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        header .logo h1 {
+            margin: 0;
+            font-size: 26px;
+            color: #FFEB3B; /* Amarillo brillante para el nombre */
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #ff4500; /* Naranja al pasar el mouse */
+        }
+
+        h2 {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .eslogan {
+            text-align: center;
+            font-size: 18px;
+            color: #e63946;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .categoria-buttons {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .categoria-buttons button {
+            margin: 0 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #e63946;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .categoria-buttons button:hover {
+            background-color: #d62828;
+        }
+
+        .categoria {
+            margin-bottom: 40px;
+        }
+
+        .categoria h3 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: orange;
+        }
+        .categoria p {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        .productos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .producto {
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            margin: 10px;
+            width: 200px;
+            box-sizing: border-box;
+        }
+
+        .producto img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+
+        /* Estilos del lightbox */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            cursor: zoom-in;
+            transition: transform 0.25s ease;
+        }
+
+        #lightbox img:hover {
+            transform: scale(1.2);
+        }
+
+        #lightbox:target {
+            display: flex;
+        }
+
+        #lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Botón de Cierre en la esquina superior derecha de la pantalla */
+        .close-lightbox {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 30px;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            z-index: 10; /* Asegura que el botón quede por encima de otras capas */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+        }
+
+        /* Media Queries para hacerlo responsivo */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column; /* Los elementos del header se apilan verticalmente */
+                text-align: center;
+            }
+
+            header .logo img {
+                height: 30px; /* Reducimos el tamaño del logo */
+            }
+
+            header .logo h1 {
+                font-size: 22px; /* Reducimos el tamaño de la fuente */
+            }
+
+            nav ul {
+                flex-direction: column;
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .carousel {
+                max-width: 100%; /* El carrusel ocupa todo el ancho */
+            }
+
+            .categoria h3, .categoria p {
+                font-size: 24px; /* Reducimos el tamaño de la fuente en categorías */
+            }
+
+            .categoria-buttons button {
+                font-size: 14px; /* Reducimos el tamaño de los botones */
+                padding: 8px 16px;
+            }
+
+            .productos {
+                flex-direction: column; /* Los productos se apilan en pantallas más pequeñas */
+                align-items: center;
+            }
+
+            .producto {
+                width: 80%; /* Los productos ocupan el 80% del ancho en pantallas pequeñas */
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .logo h1 {
+                font-size: 18px; /* Aún más pequeño en pantallas de móvil */
+            }
+
+            .carousel {
+                max-width: 100%;
+            }
+
+            .categoria h3, .categoria p {
+                font-size: 20px; /* Reducimos más el tamaño en pantallas pequeñas */
+            }
+
+            .producto {
+                width: 100%; /* Los productos ocupan todo el ancho */
+                padding: 15px; /* Reducimos el padding */
+            }
+
+            footer {
+                font-size: 14px; /* Reducimos el tamaño del pie de página */
+            }
+
+            .close-lightbox {
+                font-size: 24px; /* Reducimos el tamaño del botón de cierre */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="index.html" class="logo">
+        <img src="Imagenes/Logo.png" alt="Logo Albin">
+        <h1>Albin</h1>
+    </a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="sobre_nosotros.html">Sobre Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="carrito.html">Carrito</a></li>
+        </ul>
+    </nav>
+</header>
+
+<h2>Catálogo de Productos</h2>
+
+<div class="eslogan">
+    <p>¡Encuentra la camiseta perfecta para tu estilo único!</p>
+</div>
+
+<!-- Botones de selección de categoría -->
+<div class="categoria-buttons">
+    <button onclick="mostrarCategoria('hombre')">Hombre</button>
+    <button onclick="mostrarCategoria('mujer')">Mujer</button>
+</div>
+<div class="lightbox" id="lightbox">
+    <button class="close-lightbox" onclick="cerrarLightbox()">X</button>
+    <img id="lightbox-image" src="" alt="Imagen Ampliada" />
+</div>
+<!-- Sección de Hombre -->
+<div id="hombre" class="categoria" style="display: none;">
+    <h3>Hombre</h3>
+    <div class="productos">
+        <!-- Producto 1 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Disenio.png" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Disenio.png')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre Clavera</h3>
+            <p>200 MXN </p>
+            <button onclick="agregarAlCarrito('Camisa Hombre Clavera', 1, 200)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 2 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Disenio1.png" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Disenio1.png')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre Lisa</h3>
+            <p>180 MXN</p>
+            <button onclick="agregarAlCarrito('Camisa Hombre Lisa', 1, 180)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 3 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Disenio2.png" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Disenio2.png')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre INK</h3>
+            <p>200 MXN</p>
+            <button onclick="agregarAlCarrito('Camisa Hombre INK', 1, 200)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 4 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Disenio3.png" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Disenio3.png')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre MOM</h3>
+            <p>200 MXN</p>
+            <button onclick="agregarAlCarrito('Camisa Hombre MOM', 1, 200)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 5 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Disenio4.png" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Disenio4.png')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre Manos</h3>
+            <p>200 MXN</p>
+            <button onclick="agregarAlCarrito('Camisa Hombre Manos', 1, 200)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 6 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Disenio5.png" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Disenio5.png')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre Golondrina</h3>
+            <p>200 MXN</p>
+            <button onclick="agregarAlCarrito('Camisa Hombre Golondrina', 1, 200)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 7 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Disenio6.png" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Disenio6.png')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre Puma</h3>
+            <p>200 MXN</p>
+            <button onclick="agregarAlCarrito('Camisa Hombre Puma', 1, 200)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 8 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Disenio7.png" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Disenio7.png')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre Mascara</h3>
+            <p>200 MXN</p>
+            <button onclick="agregarAlCarrito('Camisa Hombre Mascara', 1, 200">Agregar al Carrito</button>
+        </div>
+    </div>
+</div>
+
+<!-- Sección de Mujer -->
+<div id="mujer" class="categoria" style="display: none;">
+    <h3>Mujer</h3>
+    <div class="productos">
+        <!-- Producto 1 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/DisenioM1.png" alt="Producto Mujer 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/DisenioM1.png')">
+                    <img src="Imagenes/Playera/AtrasM.png" alt="Producto Mujer 2" class="carousel-image" onclick="openLightbox('Imagenes/Playera/AtrasM.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Blusa Mujer Lisa</h3>
+            <p>200 MXN</p>
+            <button onclick="agregarAlCarrito('Blusa Mujer Lisa', 1, 200)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 2 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/DisenioM.png" alt="Producto Mujer 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/DisenioM.png')">
+                    <img src="Imagenes/Playera/AtrasM.png" alt="Producto Mujer 2" class="carousel-image" onclick="openLightbox('Imagenes/Playera/AtrasM.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Blusa Mujer Mascara</h3>
+            <p>220 MXN</p>
+            <button onclick="agregarAlCarrito('Blusa Mujer Mascara', 1, 200)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 3 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/DisenioM2.png" alt="Producto Mujer 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/DisenioM2.png')">
+                    <img src="Imagenes/Playera/AtrasM.png" alt="Producto Mujer 2" class="carousel-image" onclick="openLightbox('Imagenes/Playera/AtrasM.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Blusa Mujer Puma</h3>
+            <p>220 MXN</p>
+            <button onclick="agregarAlCarrito('Blusa Mujer Puma', 1, 220)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 4 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/DisenioM3.png" alt="Producto Mujer 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/DisenioM3.png')">
+                    <img src="Imagenes/Playera/AtrasM.png" alt="Producto Mujer 2" class="carousel-image" onclick="openLightbox('Imagenes/Playera/AtrasM.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Blusa Mujer Golondrina</h3>
+            <p>220 MXN</p>
+            <button onclick="agregarAlCarrito('Blusa Mujer Golondrina', 1, 220)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 5 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/DisenioM4.png" alt="Producto Mujer 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/DisenioM4.png')">
+                    <img src="Imagenes/Playera/AtrasM.png" alt="Producto Mujer 2" class="carousel-image" onclick="openLightbox('Imagenes/Playera/AtrasM.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Blusa Mujer MOM</h3>
+            <p>220 MXN</p>
+            <button onclick="agregarAlCarrito('Blusa Mujer MOM', 1, 220)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 6 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/DisenioM5.png" alt="Producto Mujer 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/DisenioM5.png')">
+                    <img src="Imagenes/Playera/AtrasM.png" alt="Producto Mujer 2" class="carousel-image" onclick="openLightbox('Imagenes/Playera/AtrasM.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Blusa Mujer INK</h3>
+            <p>220 MXN</p>
+            <button onclick="agregarAlCarrito('Blusa Mujer INK', 1, 220)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 7 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/DisenioM6.png" alt="Producto Mujer 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/DisenioM6.png')">
+                    <img src="Imagenes/Playera/AtrasM.png" alt="Producto Mujer 2" class="carousel-image" onclick="openLightbox('Imagenes/Playera/AtrasM.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Blusa Mujer Logo</h3>
+            <p>220 MXN</p>
+            <button onclick="agregarAlCarrito('Blusa Mujer Logo', 1, 220)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 8 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/DisenioM7.png" alt="Producto Mujer 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/DisenioM7.png')">
+                    <img src="Imagenes/Playera/AtrasM.png" alt="Producto Mujer 2" class="carousel-image" onclick="openLightbox('Imagenes/Playera/AtrasM.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Blusa Mujer Calavera</h3>
+            <p>220 MXN</p>
+            <button onclick="agregarAlCarrito('Blusa Mujer Calavera', 1, 200)">Agregar al Carrito</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Albin. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    let currentIndex = 0;
+   const images = document.querySelectorAll('.carousel-images');
+//const images = document.querySelector('test');
+    function moveCarousel(button, direction) {
+        const carouselImages = button.parentElement.querySelector('.carousel-images');
+        currentIndex += direction;
+         console.error("funcion"+images.length) 
+        if (currentIndex < 0) currentIndex = images.length - 1;
+        if (currentIndex >= images.length) currentIndex = 0;
+        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    function mostrarCategoria(categoria) {
+        document.getElementById('hombre').style.display = categoria === 'hombre' ? 'block' : 'none';
+        document.getElementById('mujer').style.display = categoria === 'mujer' ? 'block' : 'none';
+    }
+
+    function openLightbox(imageSrc) {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = lightbox.querySelector('img');
+        lightbox.style.display = 'flex';
+        lightboxImage.src = imageSrc;
+    }
+
+    function cerrarLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+
+function agregarAlCarrito(nombre, cantidad, precio) {
+    // Obtener el carrito actual del localStorage
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    console.log("Carrito actual:", carrito); // Depuración: Ver el carrito antes de agregar el producto.
+
+    // Verificar si el producto ya está en el carrito
+    let productoExistente = carrito.find(producto => producto.nombre === nombre);
+
+    if (productoExistente) {
+        // Si el producto ya existe, incrementamos su cantidad y recalculamos el costo total
+        productoExistente.cantidad += cantidad;  // Se incrementa la cantidad por el valor pasado
+        productoExistente.total = productoExistente.cantidad * productoExistente.precio;
+    } else {
+        // Si el producto no existe, lo agregamos con la cantidad proporcionada y calculamos el costo total
+        carrito.push({
+            nombre: nombre,
+            precio: precio,
+            cantidad: cantidad,
+            total: precio * cantidad // El total se calcula multiplicando la cantidad por el precio
+        });
+    }
+
+    // Guardar el carrito actualizado en localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    console.log("Carrito actualizado:", carrito); // Depuración: Ver el carrito después de agregar el producto.
+
+    // Mostrar una alerta con la cantidad y el precio total del producto agregado
+    alert(`Has agregado ${cantidad} de ${nombre} al carrito. Total: $${(precio * cantidad).toFixed(2)}`);
+}
+
+</script>
+
+</body>
+</html>

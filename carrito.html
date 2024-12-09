@@ -244,7 +244,6 @@
                 width: 100%;
                 text-align: left;
             }
-            
             #carrito td {
                 border: none;
                 padding-left: 10px;
@@ -257,7 +256,10 @@
             #carrito td::before {
                 content: attr(data-label);
                 font-weight: bold;
-                margin-right: 5px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                font-size: 16px;
             }
 
             .eliminar-btn {

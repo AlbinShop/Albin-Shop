@@ -249,23 +249,21 @@
             </ul>
         </nav>
     </header>
-
     <section id="contacto">
         <h2>Contacto</h2>
         <form id="contact-form">
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <input type="text" name="to_name" id="to_name" required>
 
             <label for="correo">Correo Electrónico:</label>
             <input type="email" id="correo" name="correo" required>
 
             <label for="mensaje">Mensaje:</label>
-            <textarea id="mensaje" name="mensaje" required></textarea>
+            <textarea name="mensaje" id="mensaje" required></textarea>
 
             <button type="submit">Enviar</button>
         </form>
     </section>
-
     <section id="redes-container">
         <p>Síguenos en nuestras redes sociales</p>
         <div>
@@ -284,7 +282,6 @@
             </a>
         </div>
     </section>
-
     <footer>
         <p>&copy; 2024 Albin | Todos los derechos reservados</p>
     </footer>
@@ -292,22 +289,28 @@
     <!-- Carga el SDK de EmailJS -->
     <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script type="text/javascript">
-        // Inicialización de EmailJS
-        emailjs.init("your_user_id");  // Sustituir con tu user_id
+        emailjs.init('lCVtKE32MA1Q17Nr-');
+        
+        const form = document.getElementById('contact-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevenir el comportamiento por defecto del formulario
 
-        // Envío del formulario
-        document.getElementById("contact-form").addEventListener("submit", function(event) {
-            event.preventDefault();
+            const btn = form.querySelector('button');
+            btn.textContent = 'Enviando...';
 
-            // Enviar formulario a EmailJS
-            emailjs.sendForm('your_service_id', 'your_template_id', this)
-                .then(function(response) {
-                    alert("Mensaje enviado con éxito!");
-                }, function(error) {
-                    alert("Error al enviar el mensaje: " + error);
+            const serviceID = 'lCVtKE32MA1Q17Nr-';
+            const templateID = 'template_w1oj4is';
+
+            emailjs.sendForm(serviceID, templateID, form)
+                .then(() => {
+                    btn.textContent = 'Enviar';
+                    alert('¡Correo enviado con éxito!');
+                })
+                .catch((err) => {
+                    btn.textContent = 'Enviar';
+                    alert('Error al enviar el correo: ' + JSON.stringify(err));
                 });
         });
     </script>
-
 </body>
 </html>

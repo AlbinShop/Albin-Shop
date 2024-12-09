@@ -7,16 +7,11 @@
     <style>
         /* Estilos Generales */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1c1c1c; /* Fondo oscuro que refleja el estilo Old School */
-            color: white; /* Color de texto blanco */
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centra todo el contenido */
-            justify-content: flex-start;
-            height: 100vh;
+            background-color: #1c1c1c;
+            color: white;
         }
 
         h1, h2, h3 {
@@ -45,13 +40,13 @@
 
         /* Header */
         header {
-            background-color: #222; /* Fondo oscuro para el header */
-            color: white; /* Letras blancas */
+            background-color: #222;
+            color: white;
             padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            flex-wrap: wrap;
         }
 
         header .logo {
@@ -141,20 +136,23 @@
             width: 100%;
         }
 
-        /* Estilo para el QR */
-        #qr-container {
+        /* Estilo para el contenedor de redes sociales */
+        #redes-container {
             margin-top: 40px;
-            text-align: center;
+            text-align: left;
+            padding-left: 40px; /* Desplaza el contenido a la derecha */
         }
 
-        #qr-container img {
-            width: 150px;
-            height: 150px;
-            margin-bottom: 10px; /* Espacio entre el QR y la leyenda */
+        /* Estilo para las imágenes de redes sociales */
+        #redes-container img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px; /* Espacio entre las imágenes */
+            margin-bottom: 10px; /* Espacio entre las filas de imágenes */
         }
 
-        /* Estilo para la leyenda debajo del QR */
-        #qr-container p {
+        /* Estilo para la leyenda */
+        #redes-container p {
             color: #FFEB3B; /* Amarillo brillante */
             font-size: 18px;
             margin-top: 0;
@@ -232,21 +230,6 @@
         }
 
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-    <script>
-        // Generar el código QR cuando la página se carga
-        $(document).ready(function(){
-            var qrcode = new QRCode(document.getElementById("qrcode"), {
-                text: "https://www.facebook.com/profile.php?id=61570148762692&mibextid=ZbWKwL", // URL actualizada
-                width: 128,
-                height: 128,
-                colorDark : "#000000",
-                colorLight : "#ffffff",
-                correctLevel : QRCode.CorrectLevel.H
-            });
-        });
-    </script>
 </head>
 <body>
     <header>
@@ -269,7 +252,7 @@
 
     <section id="contacto">
         <h2>Contacto</h2>
-        <form action="#">
+        <form id="contact-form">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required>
 
@@ -283,16 +266,44 @@
         </form>
     </section>
 
-    <!-- Aquí se coloca el QR que redirige a la página de Facebook -->
-    <section id="qr-container">
-        <a href="https://www.facebook.com/profile.php?id=61570148762692&mibextid=ZbWKwL" target="_blank">
-            <div id="qrcode"></div>
-        </a>
-        <p>Síguenos en Facebook</p> <!-- Leyenda debajo del QR -->
+    <section id="redes-container">
+        <p>Síguenos en nuestras redes sociales</p>
+        <div>
+            <a href="mailto:jose.j.27@hotmail.com">
+                <img src="imagenes/gmail.png" alt="Correo">
+            </a>
+            <a href="https://www.instagram.com/albin" target="_blank">
+                <img src="imagenes/instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61570148762692&mibextid=ZbWKwL" target="_blank">
+                <img src="imagenes/facebook.png" alt="Facebook">
+            </a>
+        </div>
     </section>
 
     <footer>
         <p>&copy; 2024 Albin | Todos los derechos reservados</p>
     </footer>
+
+    <!-- Carga el SDK de EmailJS -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // Inicialización de EmailJS
+        emailjs.init("your_user_id");  // Sustituir con tu user_id
+
+        // Envío del formulario
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Enviar formulario a EmailJS
+            emailjs.sendForm('your_service_id', 'your_template_id', this)
+                .then(function(response) {
+                    alert("Mensaje enviado con éxito!");
+                }, function(error) {
+                    alert("Error al enviar el mensaje: " + error);
+                });
+        });
+    </script>
+
 </body>
 </html>

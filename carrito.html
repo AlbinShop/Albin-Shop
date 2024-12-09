@@ -109,7 +109,7 @@
             margin: 0 auto;
             border-collapse: collapse;
             table-layout: auto;
-            overflow-x: auto;
+            overflow-x: auto; /* Permite el desplazamiento horizontal en pantallas pequeñas */
         }
 
         #carrito table, th, td {
@@ -181,7 +181,7 @@
             }
 
             #carrito table {
-                width: 90%;
+                width: 90%; /* El carrito ocupa el 90% del ancho en pantallas más pequeñas */
             }
 
             #carrito h2 {
@@ -225,7 +225,7 @@
                 padding: 5px 8px;
             }
 
-            /* Hacer que las celdas de la tabla se apilen como una lista en pantallas pequeñas */
+            /* Hacer que las celdas de la tabla sean más responsivas en pantallas muy pequeñas */
             #carrito table {
                 display: block;
                 width: 100%;
@@ -233,6 +233,12 @@
             }
 
             #carrito th, #carrito td {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            /* En pantallas muy pequeñas, convertimos las filas de la tabla en una lista */
+            #carrito table, #carrito td {
                 display: block;
                 width: 100%;
                 text-align: left;
@@ -244,16 +250,12 @@
                 padding-right: 10px;
                 font-size: 14px;
                 margin-bottom: 10px;
-                position: relative;
             }
 
             #carrito td::before {
                 content: attr(data-label);
                 font-weight: bold;
-                position: absolute;
-                left: 0;
-                top: 0;
-                font-size: 16px;
+                margin-right: 5px;
             }
 
             .eliminar-btn {
@@ -267,7 +269,7 @@
 
     <header>
         <a href="index.html" class="logo">
-            <img src="Imagenes/Logo.png" alt="Logo Albin"> 
+            <img src="Imagenes/logo.png" alt="Logo Albin"> 
             <h1>Albin</h1>
         </a>
         <nav>
@@ -325,11 +327,11 @@
             carrito.forEach((producto, index) => {
                 let fila = tablaCarrito.insertRow();
                 fila.innerHTML = `
-                    <td data-label="Producto">${producto.nombre}</td>
-                    <td data-label="Cantidad">${producto.cantidad}</td>
-                    <td data-label="Precio">$${producto.precio}</td>
-                    <td data-label="Total">$${(producto.precio * producto.cantidad).toFixed(2)}</td>
-                    <td data-label="Eliminar"><button class="eliminar-btn" onclick="eliminarDelCarrito(${index})">Eliminar</button></td>
+                    <td>${producto.nombre}</td>
+                    <td>${producto.cantidad}</td>
+                    <td>$${producto.precio}</td>
+                    <td>$${(producto.precio * producto.cantidad).toFixed(2)}</td>
+                    <td><button class="eliminar-btn" onclick="eliminarDelCarrito(${index})">Eliminar</button></td>
                 `;
                 total += producto.precio * producto.cantidad;
             });
@@ -364,7 +366,7 @@
             mensaje = encodeURIComponent(mensaje);
 
             // Redirigir al usuario a WhatsApp con el mensaje
-            let numeroWhatsApp = '4428499538';
+            let numeroWhatsApp = '5620828219';
             let url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
             window.open(url, '_blank');
         }

@@ -267,7 +267,7 @@
   </div>
 
             <button type="submit">Enviar</button>
-            <input type="submit" id="button" value="Estatus" >
+            <!--<input type="submit" id="button" value="Estatus" > -->
         </form>
     </section>
     <section id="redes-container">
@@ -306,7 +306,7 @@ document.getElementById('form')
  .addEventListener('submit', function(event) {
    event.preventDefault();
 
-   btn.value = 'Sending...';
+   btn.value = 'Enviando...';
 
    const serviceID = 'default_service';
    const templateID = 'template_kte3i48';
@@ -314,7 +314,7 @@ document.getElementById('form')
    emailjs.sendForm(serviceID, templateID, this)
     .then(() => {
       btn.value = 'Send Email';
-      alert('Sent!');
+      alert('Correo Enviado, nos pondremos en contacto!');
     }, (err) => {
       btn.value = 'Send Email';
       alert(JSON.stringify(err));

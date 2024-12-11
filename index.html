@@ -192,7 +192,28 @@
             background-color: #222;
             color: white; /* Letras en blanco */
         }
+        /* Estilo para el contenedor de redes sociales */
+        #redes-container {
+            margin-top: 40px;
+            text-align: left;
+            padding-left: 40px; /* Desplaza el contenido a la derecha */
+        }
 
+        /* Estilo para las imágenes de redes sociales */
+        #redes-container img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px; /* Espacio entre las imágenes */
+            margin-bottom: 10px; /* Espacio entre las filas de imágenes */
+        }
+
+        /* Estilo para la leyenda */
+        #redes-container p {
+            color: #FFEB3B; /* Amarillo brillante */
+            font-size: 18px;
+            margin-top: 0;
+            font-family: 'Courier New', Courier, monospace; /* Estilo de fuente similar al de los encabezados */
+        }
         /* Media Queries para hacer la página responsiva */
         @media (max-width: 1024px) {
             header {
@@ -314,7 +335,24 @@
     <section class="diseños-texto">
         <h2>Diseños exclusivos, al estilo retro</h2>
     </section>
-
+    <section id="redes-container">
+        <p>Síguenos en nuestras redes sociales</p>
+        <div>
+            <a href="mailto:albin.shopmx@gmail.com">
+                <img src="imagenes/gmail.png" alt="Correo">
+            </a>
+            <a href="https://www.instagram.com/albin" target="_blank">
+                <img src="imagenes/instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61570148762692&mibextid=ZbWKwL" target="_blank">
+                <img src="imagenes/facebook.png" alt="Facebook">
+            </a>
+            <!-- Nueva imagen para WhatsApp -->
+            <a href="https://wa.me/4428499538" target="_blank">
+                <img src="imagenes/whatsapp.jpg" alt="WhatsApp">
+            </a>
+        </div>
+    </section>
     <footer>
         <p>&copy; 2024 Albin. Todos los derechos reservados.</p>
     </footer>

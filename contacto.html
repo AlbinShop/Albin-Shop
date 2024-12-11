@@ -252,19 +252,19 @@
     <section id="contacto">
         <h2>Contacto</h2>
         <form id="form">
-  <div class="field">
-    <label for="to_name">Nombre</label>
-    <input type="text" name="to_name" id="to_name">
-  </div>
+            <div class="field">
+                <label for="to_name">Nombre</label>
+                <input type="text" name="to_name" id="to_name">
+            </div>
 
-  <div class="field">
-    <label for="from_name">Correo:</label>
-    <input type="text" name="from_name" id="from_name">
-  </div>
-  <div class="field">
-    <label for="message">Mensaje</label>
-    <input type="text" name="message" id="message">
-  </div>
+            <div class="field">
+                <label for="from_name">Correo:</label>
+                <input type="text" name="from_name" id="from_name">
+            </div>
+            <div class="field">
+                <label for="message">Mensaje</label>
+                <textarea name="message" id="message"></textarea>
+            </div>
 
             <button type="submit">Enviar</button>
             <input type="submit" id="button" value="Estatus" >
@@ -293,45 +293,43 @@
     </footer>
 
     <!-- Carga el SDK de EmailJS -->
-<script type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<script type="text/javascript">
-  emailjs.init('lCVtKE32MA1Q17Nr-')
-</script>
- <script>  
-const btn = document.getElementById('button');
+    <script type="text/javascript">
+        emailjs.init('lCVtKE32MA1Q17Nr-')
+    </script>
+    <script>  
+        const btn = document.getElementById('button');
 
-document.getElementById('form')
-  .addEventListener('submit', function(event) {
-    event.preventDefault();
+        document.getElementById('form')
+            .addEventListener('submit', function(event) {
+                event.preventDefault();
 
-    // Obtener los valores de los campos
-    const to_name = document.getElementById('to_name').value;
-    const from_name = document.getElementById('from_name').value;
-    const message = document.getElementById('message').value;
+                // Obtener los valores de los campos
+                const to_name = document.getElementById('to_name').value;
+                const from_name = document.getElementById('from_name').value;
+                const message = document.getElementById('message').value;
 
-    // Verificar que los campos no estén vacíos
-    if (!to_name || !from_name || !message) {
-      alert('Por favor, complete todos los campos.');
-      return; // Detener el envío si algún campo está vacío
-    }
+                // Verificar que los campos no estén vacíos
+                if (!to_name || !from_name || !message) {
+                    alert('Por favor, complete todos los campos.');
+                    return; // Detener el envío si algún campo está vacío
+                }
 
-    btn.value = 'Enviando...';
+                btn.value = 'Enviando...';
 
-    const serviceID = 'default_service';
-    const templateID = 'template_kte3i48';
+                const serviceID = 'default_service';
+                const templateID = 'template_kte3i48';
 
-    emailjs.sendForm(serviceID, templateID, this)
-      .then(() => {
-        btn.value = 'Send Email';
-        alert('Correo Enviado!');
-      }, (err) => {
-        btn.value = 'Send Email';
-        alert(JSON.stringify(err));
-      });
-  });
-
- </script>
+                emailjs.sendForm(serviceID, templateID, this)
+                    .then(() => {
+                        btn.value = 'Send Email';
+                        alert('Correo Enviado!');
+                    }, (err) => {
+                        btn.value = 'Send Email';
+                        alert(JSON.stringify(err));
+                    });
+            });
+    </script>
 </body>
 </html>

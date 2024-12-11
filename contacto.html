@@ -287,29 +287,33 @@
     </footer>
 
     <!-- Carga el SDK de EmailJS -->
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script type="text/javascript">
-        emailjs.init('lCVtKE32MA1Q17Nr-');
-        const form = document.getElementById('contact-form');
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();  // Prevenir el comportamiento por defecto del formulario
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-            const btn = form.querySelector('button');
-            btn.textContent = 'Enviando...';
+<script type="text/javascript">
+  emailjs.init('lCVtKE32MA1Q17Nr-')
+</script>
+ <script>  
+const btn = document.getElementById('button');
 
-            const serviceID = 'default_service';
-            const templateID = 'template_kte3i48';
+document.getElementById('form')
+ .addEventListener('submit', function(event) {
+   event.preventDefault();
 
-            emailjs.sendForm(serviceID, templateID, form)
-                .then(() => {
-                    btn.textContent = 'Enviar';
-                    alert('¡Correo enviado con éxito!');
-                })
-                .catch((err) => {
-                    btn.textContent = 'Enviar';
-                    alert('Error al enviar el correo: ' + JSON.stringify(err));
-                });
-        });
-    </script>
+   btn.value = 'Sending...';
+
+   const serviceID = 'default_service';
+   const templateID = 'template_kte3i48';
+
+   emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      btn.value = 'Send Email';
+      alert('Sent!');
+    }, (err) => {
+      btn.value = 'Send Email';
+      alert(JSON.stringify(err));
+    });
+});
+ </script>
 </body>
 </html>

@@ -49,7 +49,7 @@
         .carousel-images {
             display: flex;
             transition: transform 1.5s ease;
-            gap: 35px;  /* Añade espacio entre las imágenes */
+            gap: auto;  /* Añade espacio entre las imágenes */
         }
 
         .carousel-image {
@@ -1193,17 +1193,54 @@
 </footer>
 
 <script>
-    let currentIndex = 0;
-   const images = document.querySelectorAll('.carousel-images');
-//const images = document.querySelector('test');
-    function moveCarousel(button, direction) {
-        const carouselImages = button.parentElement.querySelector('.carousel-images');
-        currentIndex += direction;
-         console.error("funcion"+images.length) 
-        if (currentIndex < 0) currentIndex = images.length - 1;
-        if (currentIndex >= images.length) currentIndex = 0;
-        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+let currentIndex = 0;
+
+function moveCarousel(button, direction) {
+    const carousel = button.closest('.carousel');  // Asegura que estamos seleccionando el carrusel correcto
+    const carouselImages = carousel.querySelector('.carousel-images'); // Contenedor de las imágenes
+    const images = carouselImages.querySelectorAll('.carousel-image'); // Las imágenes dentro del carrusel
+    const totalImages = images.length; // Número total de imágenes
+    
+    // Si hay solo una imagen, deshabilitar los botones de navegación
+    if (totalImages <= 1) {
+        return; // No hacer nada si solo hay una imagen
     }
+
+    // Ajustamos el índice según la dirección
+    currentIndex += direction;
+
+    // Validación para no salir del rango de índices
+    if (currentIndex < 0) {
+        currentIndex = totalImages - 1; // Volver a la última imagen
+    } else if (currentIndex >= totalImages) {
+        currentIndex = 0; // Regresar a la primera imagen
+    }
+
+    // Aplicamos el desplazamiento en el carrusel
+    carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    // Opcional: Activar/desactivar los botones de navegación si se desea
+    toggleNavigationButtons();
+}
+
+// Función para habilitar/deshabilitar los botones de navegación
+function toggleNavigationButtons() {
+    const prevButton = document.querySelector('.carousel-button-prev');
+    const nextButton = document.querySelector('.carousel-button-next');
+    const carouselImages = document.querySelector('.carousel-images');
+    const totalImages = carouselImages.querySelectorAll('.carousel-image').length;
+
+    if (totalImages <= 1) {
+        prevButton.disabled = true;
+        nextButton.disabled = true;
+    } else {
+        prevButton.disabled = false;
+        nextButton.disabled = false;
+    }
+}
+
+// Llamada inicial para activar/desactivar los botones al cargar la página
+toggleNavigationButtons();
 
     function mostrarCategoria(categoria) {
         document.getElementById('hombre').style.display = categoria === 'hombre' ? 'block' : 'none';

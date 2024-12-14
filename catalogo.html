@@ -289,7 +289,7 @@
             }
 
             header .logo h1 {
-                font-size: 22px; /* Reducimos el tamaño de la fuente */
+                font-size: 18px; /* Reducimos el tamaño de la fuente */
             }
 
             nav ul {
@@ -323,8 +323,23 @@
                 width: 80%; /* Los productos ocupan el 80% del ancho en pantallas pequeñas */
                 margin: 10px 0;
             }
+            }
+            /* Consultas de medios para móviles */
+            @media (max-width: 600px) {
+            .categoria-buttons {
+             padding: 10px;  /* Reduce el padding en pantallas pequeñas */
         }
 
+        .categoria-buttons button {
+            font-size: 16px;  /* Reduce el tamaño de la fuente en móviles */
+            padding: 12px;  /* Ajusta el padding en móviles */
+            width: 90%;  /* Hace que los botones ocupen un 90% del ancho en móviles */
+        }
+        .categoria-buttons button:hover {
+            background-color: #0056b3;  /* Cambia el color cuando el ratón está encima */
+            border-color: #003366;  /* Cambia el color del borde cuando el ratón está encima */
+            border: 2px solid black;  /* Borde negro de 2px */
+        }
         @media (max-width: 480px) {
             header .logo h1 {
                 font-size: 18px; /* Aún más pequeño en pantallas de móvil */
@@ -382,6 +397,7 @@
 <div class="categoria-buttons">
     <button onclick="mostrarCategoria('hombre')">Hombre</button>
     <button onclick="mostrarCategoria('mujer')">Mujer</button>
+    <button onclick="mostrarCategoria('temporada')">Articulos de Temporada</button>
 </div>
 <div class="lightbox" id="lightbox">
     <button class="close-lightbox" onclick="cerrarLightbox()">X</button>
@@ -515,7 +531,7 @@
             </div>
             <h3>Camisa Hombre "tu Diseño"</h3>
             <p>200 MXN-350 MXN</p>
-            <button onclick="agregarAlCarrito('Camisa Hombre Lisa', 1, 180)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Camisa Hombre Lisa', 1, 350)">Agregar al Carrito</button>
         </div> 
         <!-- Producto 10 -->
         <div class="producto">
@@ -900,7 +916,7 @@
             </div>
             <h3>Blusa Mujer Calavera</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Calavera', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Calavera', 1, 220)">Agregar al Carrito</button>
         </div>
         <!-- Producto 9 -->
         <div class="producto">
@@ -914,7 +930,7 @@
             </div>
             <h3>Blusa Mujer "Tu Diseño"</h3>
             <p>200 MXN-350 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Lisa', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Lisa', 1, 350)">Agregar al Carrito</button>
         </div>
         <!-- Producto 10 -->
         <div class="producto">
@@ -928,7 +944,7 @@
             </div>
             <h3>Blusa Mujer Puma </h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Puma', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Puma', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 11 -->
         <div class="producto">
@@ -942,7 +958,7 @@
             </div>
             <h3>Blusa Mujer Puma Atras</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Puma Atras', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Puma Atras', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 12 -->
         <div class="producto">
@@ -956,7 +972,7 @@
             </div>
             <h3>Blusa Mujer Diamante</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Diamante', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Diamante', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 13 -->
         <div class="producto">
@@ -970,7 +986,7 @@
             </div>
             <h3>Blusa Mujer Dedos</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Dedos', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Dedos', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 14 -->
         <div class="producto">
@@ -984,7 +1000,7 @@
             </div>
             <h3>Blusa Mujer Tiburon</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Tiburon', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Tiburon', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 15 -->
         <div class="producto">
@@ -998,7 +1014,7 @@
             </div>
             <h3>Blusa Mujer Espada</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Espada', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Espada', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 16 -->
         <div class="producto">
@@ -1012,7 +1028,7 @@
             </div>
             <h3>Blusa Mujer Cabra</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Cabra', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Cabra', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 17 -->
         <div class="producto">
@@ -1026,7 +1042,7 @@
             </div>
             <h3>Blusa Mujer Alien</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Alien', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Alien', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 18 -->
         <div class="producto">
@@ -1040,7 +1056,7 @@
             </div>
             <h3>Blusa Mujer Diablo</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Diablo', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Diablo', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 19 -->
         <div class="producto">
@@ -1054,7 +1070,7 @@
             </div>
             <h3>Blusa Mujer Mascara 1</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 1', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 1', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 20 -->
         <div class="producto">
@@ -1068,7 +1084,7 @@
             </div>
             <h3>Blusa Mujer Mascara 2</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 2', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 2', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 21 -->
         <div class="producto">
@@ -1082,7 +1098,7 @@
             </div>
             <h3>Blusa Mujer Mascara 3</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 3', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 3', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 22 -->
         <div class="producto">
@@ -1096,7 +1112,7 @@
             </div>
             <h3>Blusa Mujer Mascara 4</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 4', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 4', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 23 -->
         <div class="producto">
@@ -1110,7 +1126,7 @@
             </div>
             <h3>Blusa Mujer Mascara 5</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 5', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 5', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 24 -->
         <div class="producto">
@@ -1124,7 +1140,7 @@
             </div>
             <h3>Blusa Mujer Mascara 6</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 6', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 6', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 25 -->
         <div class="producto">
@@ -1138,7 +1154,7 @@
             </div>
             <h3>Blusa Mujer Mascara 7</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 7', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Mascara 7', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 26 -->
         <div class="producto">
@@ -1152,7 +1168,7 @@
             </div>
             <h3>Blusa Mujer Estrella</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Estrella', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Estrella', 1, 220)">Agregar al Carrito</button>
         </div>
                 <!-- Producto 27 -->
         <div class="producto">
@@ -1166,7 +1182,181 @@
             </div>
             <h3>Blusa Mujer Estrella 1</h3>
             <p>220 MXN</p>
-            <button onclick="agregarAlCarrito('Blusa Mujer Estrella 1', 1, 200)">Agregar al Carrito</button>
+            <button onclick="agregarAlCarrito('Blusa Mujer Estrella 1', 1, 220)">Agregar al Carrito</button>
+        </div>
+    </div>
+</div>
+<!-- Sección de por Temporada -->
+<div id="temporada" class="categoria" style="display: none;">
+    <h3>Articulos de Temporada</h3>
+    <div class="productos">
+        <!-- Producto 1 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Temporada.png" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Temporada.png')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre Mascara Navidad</h3>
+            <p>240 MXN </p>
+            <button onclick="agregarAlCarrito('Camisa Mascara Navidad', 1, 240)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 2 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Temporada1.png" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Temporada1/Disenio.png')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre Calavera Navidad</h3>
+            <p>240 MXN </p>
+            <button onclick="agregarAlCarrito('Camisa Hombre Clavera Navidad', 1, 240)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 3 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Temporada2.png" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Temporada2.png')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre Devil Navidad</h3>
+            <p>240 MXN </p>
+            <button onclick="agregarAlCarrito('Camisa Hombre Devil Navidad', 1, 240)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 4 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Temporada3.png" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Temporada3.png')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre Mascara Navidad</h3>
+            <p>240 MXN </p>
+            <button onclick="agregarAlCarrito('Camisa Hombre Mascara Navidad', 1, 240)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 5 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Temporada4.png" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Temporada4.png')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre Puma Navidad</h3>
+            <p>240 MXN </p>
+            <button onclick="agregarAlCarrito('Camisa Hombre Puma Navidad', 1, 240)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 6 -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/Temporada5.jpg" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Temporada5.jpg')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Hombre Diablo Navidad</h3>
+            <p>240 MXN </p>
+            <button onclick="agregarAlCarrito('Camisa Hombre Diablo Navidad', 1, 240)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 1 Mujer-->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/TemporadaM.jpg" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/TemporadaM.jpg')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Mujer Mascara Navidad</h3>
+            <p>240 MXN </p>
+            <button onclick="agregarAlCarrito('Camisa Mujer Mascara Navidad', 1, 240)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 2 Mujer-->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/TemporadaM1.jpg" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Temporada1/TemporadaM1.jpg')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Mujer Calavera Navidad</h3>
+            <p>240 MXN </p>
+            <button onclick="agregarAlCarrito('Camisa Mujer Clavera Navidad', 1, 240)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 3 Mujer-->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/TemporadaM2.jpg" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/TemporadaM2.jpg')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Mujer Devil Navidad</h3>
+            <p>240 MXN </p>
+            <button onclick="agregarAlCarrito('Camisa Mujer Devil Navidad', 1, 240)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 4 Mujer-->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/TemporadaM3.jpg" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/TemporadaM3.jpg')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Mujer Mascara Navidad</h3>
+            <p>240 MXN </p>
+            <button onclick="agregarAlCarrito('Camisa Mujer Mascara Navidad', 1, 240)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 5 Mujer-->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/TemporadaM4.jpg" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/TemporadaM4.jpg')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Mujer Puma Navidad</h3>
+            <p>240 MXN </p>
+            <button onclick="agregarAlCarrito('Camisa Mujer Puma Navidad', 1, 240)">Agregar al Carrito</button>
+        </div>
+        <!-- Producto 6 Mujer  -->
+        <div class="producto">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="Imagenes/Playera/TemporadaM5.jpg" alt="Diseño 1" class="carousel-image" onclick="openLightbox('Imagenes/Playera/TemporadaM5.jpg')">
+                    <img src="Imagenes/Playera/Atras.png" alt="Diseño Atras" class="carousel-image" onclick="openLightbox('Imagenes/Playera/Atras.png')">
+                </div>
+                <button class="carousel-button carousel-button-prev" onclick="moveCarousel(this, -1)">&#10094;</button>
+                <button class="carousel-button carousel-button-next" onclick="moveCarousel(this, 1)">&#10095;</button>
+            </div>
+            <h3>Camisa Mujer Diablo Navidad</h3>
+            <p>240 MXN </p>
+            <button onclick="agregarAlCarrito('Camisa Mujer Diablo Navidad', 1, 240)">Agregar al Carrito</button>
         </div>
     </div>
 </div>
@@ -1245,6 +1435,7 @@ toggleNavigationButtons();
     function mostrarCategoria(categoria) {
         document.getElementById('hombre').style.display = categoria === 'hombre' ? 'block' : 'none';
         document.getElementById('mujer').style.display = categoria === 'mujer' ? 'block' : 'none';
+        document.getElementById('temporada').style.display = categoria === 'temporada' ? 'block' : 'none';
     }
 
     function openLightbox(imageSrc) {
